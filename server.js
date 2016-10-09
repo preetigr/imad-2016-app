@@ -6,22 +6,43 @@ var app = express();
 app.use(morgan('combined'));
 
 
-var ArticleOne= {
-   title: 'Article One| Preeti GR',
-   heading: 'Article One',
-   date: 'sep 4, 1995',
-   content: `
-   <p>
-                                    This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!!
-                      </p>
-                      <p>
-                                    This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!!
-                        </p>
-                                     <p>
-                                    This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!!
-                       </p>`
+var articles = {
+'article-one': {
+title: 'Article One| Preeti GR',
+heading: 'Article One',
+date: 'sep 4, 1995',
+content: `
+<p>
+                                This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!!
+                  </p>
+                  <p>
+                                This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!!
+                    </p>
+                                 <p>
+                                This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!! This is my first article!!
+                   </p>`
+ },
+'article-two': {
+    title: 'Article Two| Preeti GR',
+heading: 'Article Two',
+date: 'sep 4, 1996',
+content: `
+<p>
+                                This is my second article!!
+                   </p>`
+    
+},
+'article-three': {
+    title: 'Article Three| Preeti GR',
+heading: 'Article Three',
+date: 'sep 4, 1997',
+content: `
+<p>
+                                This is my third article!!
+                   </p>`
+    
+}
 };
-
 function createTemplate (data) {
     var title = data.title;
     var date = data.date;
@@ -63,19 +84,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function (req, res) {
-res.send(createTemplate(ArticleOne));
+app.get('/:articleName',function (req, res) {
+    var articleName = reg.params.articleName;
+res.send(createTemplate(articles[articleName]));
 }); 
-    
-app.get('/article-two',function (req, res) {
-res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-app.get('/ui/madi.png', function (req, res) {
-app.get('/article-three',function (req, res) {
-res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
- res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
-});
 
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
