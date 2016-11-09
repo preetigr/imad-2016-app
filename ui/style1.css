@@ -27,7 +27,6 @@ li a {
 /*Hover state for top level links*/
 li:hover a {
     background: #19c589;
-	background-image: url(https://www.whatsuplife.in/hyderabad/blog/wp-content/uploads/2015/10/food-buffet-1134498.jpg);
 }
 
 /*Style for dropdown links*/
